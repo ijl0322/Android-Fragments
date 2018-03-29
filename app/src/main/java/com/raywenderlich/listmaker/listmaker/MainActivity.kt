@@ -14,6 +14,7 @@ import android.widget.EditText
 
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity(), ListSelectionFragment.OnFragmentInteractionListener {
 
     private var listSelectionFragment: ListSelectionFragment = ListSelectionFragment()
@@ -31,6 +32,8 @@ class MainActivity : AppCompatActivity(), ListSelectionFragment.OnFragmentIntera
         fab.setOnClickListener { view ->
             showCreateListDialog()
         }
+
+
 
     }
 
@@ -61,13 +64,16 @@ class MainActivity : AppCompatActivity(), ListSelectionFragment.OnFragmentIntera
         builder.setView(listTitleEditText)
 
         builder.setPositiveButton(positiveButtonTitle, { dialog, i ->
+
             val list = TaskList(listTitleEditText.text.toString())
             listSelectionFragment.addList(list)
+
             dialog.dismiss()
             showListDetail(list)
         })
 
         builder.create().show()
+
     }
 
     private fun showListDetail(list: TaskList) {
@@ -86,7 +92,7 @@ class MainActivity : AppCompatActivity(), ListSelectionFragment.OnFragmentIntera
             data?.let {
                 listSelectionFragment.saveList(data.getParcelableExtra(INTENT_LIST_KEY))
             }
-
         }
     }
+
 }
